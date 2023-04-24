@@ -5,22 +5,26 @@ import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
 
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 1000, HEIGHT = WIDTH / 12 * 9;
 
     private Thread thread;
     private boolean running = false;
 
     private Random r;
     private Handler handler;
+    private HUD hud;
     public Game(){
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
 
         new Window(WIDTH, HEIGHT, "EPIC GAME", this);
 
+        hud = new HUD();
+
         r = new Random();
 
-        handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.Player));
+        handler.addObject(new Player((470), (180), ID.Player));
+        handler.addObject(new Tower((470), (310), ID.Tower));
 
         //handler.addObject(new Player(200, 200, ID.Player));
     }
@@ -40,6 +44,7 @@ public class Game extends Canvas implements Runnable{
     }
 
     public void run(){
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -70,6 +75,7 @@ public class Game extends Canvas implements Runnable{
 
     private void tick(){
         handler.tick();
+        hud.tick();
     }
 
     private void render(){
@@ -79,13 +85,21 @@ public class Game extends Canvas implements Runnable{
             return;
         }
         Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.orange);
+        g.setColor(Color.LIGHT_GRAY);
         g. fillRect(0, 0, WIDTH,HEIGHT);
 
         handler.render(g);
+        hud.render(g);
 
         g.dispose();
         bs.show();
+    }
+    public static int clamp(int var, int min, int max){
+        if(var >= max)
+            return var = max;
+        else if(var <= min)
+            return var = min;
+        else return var;
     }
     public static void main(String[] args) {
         //System.out.println("Hello world!");
