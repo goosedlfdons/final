@@ -5,7 +5,9 @@ public enum ID {
     Player(),
 
     Teammate(),
-    Enemy();
+    Enemy(),
+    
+    Tower();
 
 
 }
