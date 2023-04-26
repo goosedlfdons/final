@@ -13,6 +13,7 @@ public class Game extends Canvas implements Runnable{
     private Random r;
     private Handler handler;
     private HUD hud;
+    private HUD Thud;
     public Game(){
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
@@ -20,6 +21,7 @@ public class Game extends Canvas implements Runnable{
         new Window(WIDTH, HEIGHT, "EPIC GAME", this);
 
         hud = new HUD();
+        Thud = new HUD();
 
         r = new Random();
 
@@ -76,6 +78,7 @@ public class Game extends Canvas implements Runnable{
     private void tick(){
         handler.tick();
         hud.tick();
+        Thud.tick();
     }
 
     private void render(){
@@ -90,6 +93,7 @@ public class Game extends Canvas implements Runnable{
 
         handler.render(g);
         hud.render(g);
+        Thud.renderTower(g);
 
         g.dispose();
         bs.show();
