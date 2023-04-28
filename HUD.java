@@ -5,8 +5,8 @@ public static int Health = 100;
 public static int TowerHealth = 100;
 
 public void tick(){
-Health--;
-TowerHealth --;
+//Health--;
+//TowerHealth --;
 Health = Game.clamp(Health, 0, 100);
 TowerHealth = Game.clamp(TowerHealth, 0, 500);
 
