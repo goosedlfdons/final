@@ -14,6 +14,8 @@ public class Game extends Canvas implements Runnable{
     private Handler handler;
     private HUD hud;
     private HUD Thud;
+
+    private Spawn spawner;
     public Game(){
         handler = new Handler();
         this.addKeyListener(new KeyInput(handler));
@@ -22,12 +24,13 @@ public class Game extends Canvas implements Runnable{
 
         hud = new HUD();
         Thud = new HUD();
+        spawner = new Spawn(handler, hud);
 
         r = new Random();
 
         handler.addObject(new Player((470), (180), ID.Player, handler));
         handler.addObject(new Tower((470), (310), ID.Tower, handler));
-        handler.addObject(new Enemy((r.nextInt(1000)), (r.nextInt(750)), ID.Enemy));
+        handler.addObject(new Enemy((r.nextInt(1000)), (r.nextInt(750)), ID.Enemy, handler));
 
         //handler.addObject(new Player(200, 200, ID.Player));
     }
