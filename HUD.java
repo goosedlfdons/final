@@ -2,7 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 public class HUD {
 public static int Health = 100;
-public static int TowerHealth = 100;
+public static int TowerHealth = 200;
+private int enemiesSlain = 0;
 
 public void tick(){
 //Health--;
@@ -18,15 +19,21 @@ TowerHealth = Game.clamp(TowerHealth, 0, 500);
         g.fillRect(15, 15, Health * 2, 32);
         g.setColor(Color.BLACK);
         g.drawRect(15, 15,200, 32);
+
+        g.drawString("Enemies Slain: " + enemiesSlain, 15, 170);
+        g.drawString("Sir Lancelot: " + Health, 15, 60);
+
     }
 
     public void renderTower(Graphics g) {
         g.setColor(Color.red);
-        g.fillRect(15, 80,200, 32);
-        g.setColor(Color.BLUE);
-        g.fillRect(15, 80, TowerHealth * 2, 32);
+        g.fillRect(15, 80, 200, 32);
+        g.setColor(Color.darkGray);
+        g.fillRect(15, 80, TowerHealth, 32);
         g.setColor(Color.black);
-        g.drawRect(15, 80,200, 32);
+        g.drawRect(15, 80, 200, 32);
+
+        g.drawString("Tower: " + TowerHealth, 15, 130);
     }
 
 }
