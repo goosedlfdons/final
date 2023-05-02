@@ -7,7 +7,9 @@ public enum ID {
     Teammate(),
     Enemy(),
     
-    Tower();
+    Tower(),
+    
+    Trail();
 
 
 }
