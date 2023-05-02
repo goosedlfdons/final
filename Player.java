@@ -24,7 +24,7 @@ public class Player extends GameObject {
         y += velY;
         if(y <= 0 || y >= Game.HEIGHT - 60) velY *= -1;
         if(x <= 0 || x >= Game.WIDTH - 40) velX *= -1;
-
+        handler.addObject(new Trail(x, y, ID.Trail, Color.blue, 32, 32, 0.1f, handler));
         collision();
     }
 
